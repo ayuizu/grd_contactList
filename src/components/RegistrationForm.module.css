@@ -1,0 +1,30 @@
+.successMessage{
+    color: green;
+}
+
+.errorMessage{
+    color: red;
+    font-size:xx-small;
+}
+
+
+.modal{
+    display: flex;
+    justify-content: center;
+    width: 500px;
+    min-height: 300px;
+    background-color: rgba(225, 232, 235, 0.7);
+}
+
+.modal button{
+    background-color:rgb(93, 136, 122);
+    margin: 5px;
+}
+
+.modal input{
+    width: 200px;
+}
+
+.modal label{
+    width: 200px;
+}
