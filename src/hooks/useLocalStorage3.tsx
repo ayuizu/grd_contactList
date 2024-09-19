@@ -6,7 +6,7 @@ const useLocalStorage3 = (key: string) => {
     interface Item {
         [key: string]: any; 
     }
-    const [item, setItem] = useState<Item>({value:''});
+    const [item, setItem] = useState<Item>({id:''});
 
     //Estado para armazenar array de itens no localStorage
     const [itemsList, setItemsList] = useState<Item[]>([]);
@@ -50,11 +50,24 @@ const useLocalStorage3 = (key: string) => {
 
     }
     //Adicionar item ao localStorage
-    const addItem = (item: any) => {
+    // const addItem = (item: any) => {
+    //     try{
+    //         const id = getNextId();
+    //         if(item!==''){
+    //             const newItem : Item = {id, value:item};
+    //             setItemsList([...itemsList, newItem]);
+    //             setItem({value:''});
+                
+    //         }
+    //     }catch(error){
+    //         console.log(error);
+    //     };
+    // };
+    const addItem = (value: any) => {
         try{
             const id = getNextId();
-            if(item!==''){
-                const newItem : Item = {id, value:item};
+            if(value!==''){
+                const newItem : Item = {id, value};
                 setItemsList([...itemsList, newItem]);
                 setItem({value:''});
                 
@@ -63,6 +76,7 @@ const useLocalStorage3 = (key: string) => {
             console.log(error);
         };
     };
+    
     
     //Obter um item no local storage
     const getItem = (id: string) => {
@@ -78,7 +92,7 @@ const useLocalStorage3 = (key: string) => {
 
     //Obter todos os itens do localStorage
     const loadItems = () =>{
-        const items = {...localStorage};
+        const items = [{...localStorage}];
         return items;
     }
 

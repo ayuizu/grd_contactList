@@ -5,7 +5,11 @@ import RegistrationForm from "./RegistrationForm";
 const ContactList = () =>{
 
     // Acesso ao estado useLocalStorage
-    const { itemsList, getItem, removeItem } = useLocalStorage3('itemsList');
+    const { itemsList, setItemsList, getItem, loadItems, removeItem } = useLocalStorage3('itemsList');
+
+    // const loadContacts = () => {
+    //     return loadItems();
+    // }
 
     //Estado local para forçar re-renderização
     // const [contacts, setContacts] = useState<any[]>([]);
@@ -15,6 +19,8 @@ const ContactList = () =>{
     //     setContacts(itemsList);
     // }, [itemsList]);
 
+    //Estado para atualizar tabela
+    const [reload,setReload]=useState(false);
     //Modal
     const [isModalOpen, setIsModalOpen] = useState(false);
     function handleOpenModal() {
@@ -22,7 +28,13 @@ const ContactList = () =>{
     }
     function handleCloseModal() {
       setIsModalOpen(false);
+      setReload(!reload);
     }
+
+    useEffect(() => {
+        loadItems();
+        console.log("atualizando");
+    }, [reload]);
 
     return (
         <div>
@@ -60,6 +72,7 @@ const ContactList = () =>{
                         )}
                 </tbody>
             </table>
+            {/* <button onClick={loadContacts}>Atualizar</button> */}
 
 
           </div>
